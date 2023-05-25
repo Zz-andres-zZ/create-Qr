@@ -1,0 +1,399 @@
+<!DOCTYPE html>
+<html lang="es">
+    <head>
+        <meta charset="UTF-8" />
+        <meta
+            name="viewport"
+            content="width=device-width, initial-scale=1, shrink-to-fit=no"
+        />
+        <meta name="description" content="" />
+        <meta name="author" content="" />
+        <meta property="og:image" content="recursos/social.png" />
+        <meta
+            property="og:description"
+            content="Genera y descarga gratis tu código QR para tu URL, WhatsApp, Menú Digital (Restaurantes), Teléfono o WiFi"
+        />
+        <meta
+            property="og:title"
+            content="Generador de Código QR Gratis Online para URL, WhatsApp, Menú Digital y más"
+        />
+        <meta
+            property="og:site_name"
+            content="Haz tu Código QR, Generador de Código QR Online Gratis"
+        />
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:site" content="@fernandodilland" />
+        <meta
+            name="twitter:title"
+            content="Generador de Código QR Gratis Online para URL, WhatsApp, Menú y más"
+        />
+        <meta
+            name="twitter:description"
+            content="Genera y descarga gratis tu código QR para tu URL, WhatsApp, Menú Digital (Restaurantes), Teléfono o WiFi"
+        />
+        <meta name="twitter:image" content="recursos/social2.png" />
+        <link rel="icon" href="recursos/favicon.png" />
+
+        <title>Generador de Códigos QR Gratis, WhatsApp, Links</title>
+
+        <link
+            href="recursos/vendor/bootstrap/css/bootstrap.min.css"
+            rel="stylesheet"
+        />
+
+        <link rel="stylesheet" href="recursos/detalles.css" />
+        <link rel="stylesheet" href="recursos/animated.css" />
+        <link rel="stylesheet" href="recursos/owl.css" />
+
+        <style>
+            .qr {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                margin-top: 50px;
+                width: 100%;
+            }
+
+            .download-button {
+                text-align: center;
+                margin-top: 20px;
+                max-width: 250px;
+                margin: 0 auto;
+            }
+
+            .qr-canvas-wrapper {
+                max-width: 800px;
+                max-height: 800px;
+                margin: 0 auto;
+            }
+
+            @font-face {
+                font-family: "Poppins";
+                src: url("recursos/Poppins-Regular.ttf") format("truetype");
+                font-weight: normal;
+                font-style: normal;
+            }
+
+            @font-face {
+                font-family: "Poppins";
+                src: url("recursos/Poppins-SemiBold.ttf") format("truetype");
+                font-weight: bold;
+                font-style: normal;
+            }
+        </style>
+    </head>
+    <body>
+        <div class="main-banner" id="top">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="row">
+                            <div class="col-lg-6 align-self-center">
+                                <div class="left-content header-text">
+                                    <h2>Haz tu <em>Código QR</em></h2>
+                                    <br />
+                                    <div class="container">
+                                        <div class="options">
+                                            <label for="type"
+                                                >Seleccione el tipo de código
+                                                QR:</label
+                                            ><br />
+                                            <select
+                                                class="form-control"
+                                                id="type"
+                                                name="type"
+                                                onchange="changePlaceholder()"
+                                            >
+                                                <option value="url">URL</option>
+                                                <option value="whatsapp">
+                                                    WhatsApp
+                                                </option>
+                                                <option value="drive">
+                                                    Menú digital (Google Drive)
+                                                </option>
+                                                <option value="sms">
+                                                    Mensaje de texto SMS
+                                                </option>
+                                                <option value="phone">
+                                                    Teléfono
+                                                </option>
+                                                <option value="text">
+                                                    Texto simple
+                                                </option>
+                                                <option value="location">
+                                                    Geolocalización
+                                                </option>
+                                                <option value="wifi">
+                                                    Red Wifi
+                                                </option>
+                                                <option value="maps">
+                                                    Google Maps
+                                                </option></select
+                                            ><br />
+                                            <label for="content"
+                                                >Ingrese la información:</label
+                                            ><br />
+                                            <input
+                                                class="form-control"
+                                                type="text"
+                                                id="content"
+                                                name="content"
+                                                placeholder="https://"
+                                            /><br />
+                                            <div id="additional-fields"></div>
+                                            <label for="size"
+                                                >Seleccione un tamaño:</label
+                                            ><br />
+                                            <select
+                                                class="form-control"
+                                                id="size"
+                                                name="size"
+                                            >
+                                                <option value="100x100">
+                                                    100x100
+                                                </option>
+                                                <option value="200x200">
+                                                    200x200
+                                                </option>
+                                                <option
+                                                    value="300x300"
+                                                    selected
+                                                >
+                                                    300x300
+                                                </option>
+                                                <option value="500x500">
+                                                    500x500
+                                                </option></select
+                                            ><br />
+                                            <button
+                                                class="btn btn-primary"
+                                                onclick="generateQRCode()"
+                                            >
+                                                Generar código QR
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-6">
+                                <div class="right-image wow fadeInRight">
+                                    <div class="qr">
+                                        <div class="qr-canvas-wrapper">
+                                            <canvas id="qr-canvas"></canvas>
+                                        </div>
+                                    </div>
+                                    <div class="download-button">
+                                        <a
+                                            id="download-link"
+                                            class="btn btn-primary"
+                                            href="#"
+                                            download="qr.png"
+                                            style="display: none"
+                                            >Descargar código QR</a
+                                        >
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <footer>
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-12 wow fadeIn">
+                        <p>
+                            Genera tu código QR para URL, WhatsApp, Menú
+                            Digital, Teléfono, Texto, Geolocalización, Google
+                            Maps y Wi-Fi. <br />Creado por:
+                            <a rel="nofollow" href="https://andreshmndz.000webhostapp.com/" target="_parent" >Andres Hernandez</a>, código fuente:
+                            <a rel="nofollow" href="https://github.com/Zz-andres-zZ" target="_parent" >GitHub</a
+                            >.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </footer>
+
+        <!-- Scripts -->
+        <script src="recursos/vendor/jquery/jquery.min.js"></script>
+        <script src="recursos/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+        <script src="recursos/owl-carousel.js"></script>
+        <script src="recursos/animation.js"></script>
+        <script src="recursos/imagesloaded.js"></script>
+        <script src="recursos/detalles.js"></script>
+        <script src="recursos/qrious.min.js"></script>
+        <!-- Script para generación de Código QR -->
+        <script>
+            // Función para generar el código QR
+            function generateQRCode() {
+                var typeSelect = document.getElementById("type");
+                var contentInput = document.getElementById("content");
+                var additionalFields = document.getElementById("additional-fields");
+                var qrCodeCanvas = document.getElementById("qr-canvas");
+                var downloadLink = document.getElementById("download-link");
+
+                var content = contentInput.value;
+                var size = document.getElementById("size").value;
+
+                var qr = new QRious({
+                    element: qrCodeCanvas,
+                    value: generateQRValue(),
+                    size: parseInt(size.split("x")[0]),
+                });
+
+                downloadLink.href = qr.toDataURL();
+                downloadLink.style.display = "block";
+            }
+
+            // Función para generar el valor del código QR en base al tipo seleccionado
+            function generateQRValue() {
+                var typeSelect = document.getElementById("type");
+                var contentInput = document.getElementById("content");
+                var additionalFields = document.getElementById("additional-fields");
+
+                switch (typeSelect.value) {
+                    case "url":
+                        return addHTTPProtocol(contentInput.value);
+                    case "whatsapp":
+                        var phoneNumber = contentInput.value;
+                        var message = additionalFields.querySelector("#whatsapp-message").value;
+                        return generateWhatsAppLink(phoneNumber, message);
+                    case "sms":
+                        var phoneNumber = contentInput.value;
+                        var message = additionalFields.querySelector("#sms-message").value;
+                        return generateSMSLink(phoneNumber, message);
+                    case "phone":
+                        return "tel:" + contentInput.value;
+                    case "text":
+                        return contentInput.value;
+                    case "location":
+                        var latitude = contentInput.value;
+                        var longitude = additionalFields.querySelector("#location-longitude").value;
+                        return generateGeoLocationLink(latitude, longitude);
+                    case "wifi":
+                        var wifiName = contentInput.value;
+                        var wifiPassword = additionalFields.querySelector("#wifi-password").value;
+                        var wifiSecurity = additionalFields.querySelector("#wifi-security").value;
+                        return generateWifiLink(wifiName,wifiPassword,wifiSecurity);
+                    case "drive":
+                        return contentInput.value;
+                    case "maps": // Nueva opción agregada
+                        return generateGoogleMapsLink(contentInput.value);
+                    default:
+                        return addHTTPProtocol(contentInput.value);
+                }
+            }
+
+            // Función para cambiar el marcador de posición según el tipo seleccionado
+            function changePlaceholder() {
+                var typeSelect = document.getElementById("type");
+                var contentInput = document.getElementById("content");
+                var additionalFields = document.getElementById("additional-fields");
+
+                switch (typeSelect.value) {
+                    case "url":
+                        contentInput.placeholder = "Dirección URL";
+                        additionalFields.innerHTML = "";
+                        break;
+                    case "whatsapp":
+                        contentInput.placeholder = "Número de WhatsApp";
+                        additionalFields.innerHTML = `<input type="text" class="form-control" id="whatsapp-message" name="whatsapp-message" placeholder="Mensaje (opcional)"><br>`;
+                        break;
+                    case "sms":
+                        contentInput.placeholder = "Número de teléfono";
+                        additionalFields.innerHTML = `<input type="text" class="form-control" id="sms-message" name="sms-message" placeholder="Mensaje"><br>`;
+                        break;
+                    case "phone":
+                        contentInput.placeholder = "Ingresa el número de teléfono"; 
+                        additionalFields.innerHTML = "";
+                        break;
+                    case "text":
+                        contentInput.placeholder = "Ingresa el texto";
+                        additionalFields.innerHTML = "";
+                        break;
+                    case "location":
+                        contentInput.placeholder = "Latitud";
+                        additionalFields.innerHTML = `<input type="text" class="form-control" id="location-longitude" name="location-longitude" placeholder="Longitud"><br>`;
+                        break;
+                    case "wifi":
+                        contentInput.placeholder = "Nombre de la red";
+                        additionalFields.innerHTML = `<input type="text" class="form-control" id="wifi-password" name="wifi-password" placeholder="Contraseña">
+                        <br>
+                        <select class="form-control" id="wifi-security" name="wifi-security">
+                            <option value="WPA">WPA</option>
+                            <option value="WEP">WEP</option>
+                            <option value="Ninguna">Ninguna</option>
+                        </select>
+                        <br>
+                        `;
+                        break;
+                    case "drive":
+                        contentInput.placeholder = "https://drive.google.com/drive/folders/...";
+                        additionalFields.innerHTML = "";
+                        break;
+                    case "maps": // Nueva opción agregada
+                        contentInput.placeholder = "Dirección";
+                        additionalFields.innerHTML = "";
+                        break;
+                    default:
+                        contentInput.placeholder = "Dirección URL";
+                        additionalFields.innerHTML = "";
+                        break;
+                }
+            }
+
+            // Función para agregar el protocolo HTTP a una URL si no está presente
+            function addHTTPProtocol(url) {
+                if (url && !url.match(/^https?:\/\//i)) {
+                    url = "http://" + url;
+                }
+                return url;
+            }
+
+            // Función para generar el enlace de WhatsApp
+            function generateWhatsAppLink(phoneNumber, message) {
+                var link =
+                    "https://wa.me/" + phoneNumber.replace(/[^\d.]/g, "");
+                if (message) {
+                    link += "?text=" + encodeURIComponent(message);
+                }
+                return link;
+            }
+
+            // Función para generar el enlace de mensaje de texto SMS
+            function generateSMSLink(phoneNumber, message) {
+                var link = "sms:" + phoneNumber.replace(/[^\d.]/g, "");
+                if (message) {
+                    link += "&body=" + encodeURIComponent(message);
+                }
+                return link;
+            }
+
+            // Función para generar el enlace de geolocalización
+            function generateGeoLocationLink(latitude, longitude) {
+                return ("geo:" + encodeURIComponent(latitude) + "," + encodeURIComponent(longitude) + ",500");
+            }
+
+            // Función para generar el enlace de red WiFi
+            function generateWifiLink(name, password, security) {
+                var link = "WIFI:S:" + encodeURIComponent(name) + ";";
+                if (password) {
+                    link += "T:" + security + ";P:" + encodeURIComponent(password) + ";;";
+                } else {
+                    link += "T:" + security + ";;";
+                }
+                return link;
+            }
+
+            // Función para generar el enlace de Google Maps
+            function generateGoogleMapsLink(address) {
+                return (
+                    "https://www.google.com/maps/search/" + encodeURIComponent(address)
+                );
+            }
+        </script>
+    </body>
+</html>
