@@ -17,4 +17,4 @@ Features:
 
 ## License
 
-[create-Qr](https://github.com/Zz-andres-zZ/create-Qr/LICENSE) are released under [MIT license](https://github.com/Zz-andres-zZ/create-Qr/LICENSE) . Copyright (C) 2023 [Andres Hernandez](https://github.com/Zz-andres-zZ).
+[create-Qr](https://github.com/Zz-andres-zZ/create-Qr) are released under [MIT license](https://github.com/Zz-andres-zZ/create-Qr/LICENSE) . Copyright (C) 2023 [Andres Hernandez](https://github.com/Zz-andres-zZ).
