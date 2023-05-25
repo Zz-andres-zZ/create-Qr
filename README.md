@@ -2,9 +2,6 @@
 
 [![Software License](https://img.shields.io/badge/license-MIT-brightgreen.svg)](LICENSE)
 
-## Uso
-- Disponible en: https://hazqr.com/ (CNAME apuntado de https://hazqr.pages.dev/).
-
 ## Detalles técnicos
 - Dominio (hazqr.com) adquirido y administrado en [Cloudflare Registrar](https://www.cloudflare.com/products/registrar/).
 - Hospedado en [Cloudflare Pages](https://pages.cloudflare.com/).
